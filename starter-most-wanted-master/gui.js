@@ -29,14 +29,14 @@ function initSearch(people){
                 initSearchByTraits(people);
                 break;
         default:
-                alert("I'm sorry, please enter yes or no.")
+                alert("yes or no")
                 initSearch();
                 break;
         }
 }
 function initSearchByName(people){
-   var nameSelection = prompt("will you search by first last or full")
-   switch (nameSelection.toLowerCase())
+   var nameChoice = prompt("will you search by first last or full")
+   switch (nameChoice.toLowerCase())
        {
            case "first":
                getFirstName(people);
@@ -48,7 +48,7 @@ function initSearchByName(people){
                getFullName(people);
                break;
            default:
-               alert("I'm sorry, please enter First, Last, or Full. Thank you.")
+               alert("last firts full")
                initSearchByName();
                break;
        }
@@ -138,16 +138,16 @@ switch(searchOption.toLowerCase())
             ageSearch(people);
             break;
     case "occupation":
-            occupationSearch();
+            occupationSearch(people);
             break;
     case "height":
-            heightSearch();
+            heightSearch(people);
             break;
     case "eye color":
-            eyeColorSearch();
+            eyeColorSearch(people);
             break;
     case "weight":
-            weightSearch();
+            weightSearch(people);
             break;
     default:
             alert("I'm sorry that isn't an accepted search term, please enter either age, occupation, height, eye color, or weight.")
@@ -215,13 +215,13 @@ function searchByOccupation(people,occupationAnswer)
     });   
 }
 function getHeight(people){
-   var heightAnswer = prompt("Please enter in their height in inches.")
+   var heightPrompt = prompt("Please enter in their height in inches.")
    
-searchByHeight(people,heightAnswer);
+searchByHeight(people,heightPrompt);
 }
-function searchByHeight(people,heightAnswer){
+function searchByHeight(people,heightPrompt){
      people.filter(function(person){
-        if(person.height() == heightAnswer)
+        if(person.height() == heightPrompt)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
@@ -234,14 +234,14 @@ function searchByHeight(people,heightAnswer){
     
 }
 function getEyeColor(people){
-    var eyeColorAnswer = prompt("What color are the eyes of the person you are looking for?")
-    searchByEyeColor(people, eyeColorAnswer)
+    var eyeColorPrompt = prompt("What color are the eyes of the person you are looking for?")
+    searchByEyeColor(people, eyeColorPrompt)
 }
-function searchByEyeColor(people, eyeColorAnswer)
+function searchByEyeColor(people, eyeColorPrompt)
 {
         {
              people.filter(function(person){
-        if(person.eyeColor() == eyeColorAnswer)
+        if(person.eyeColor() == eyeColorPrompt)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
