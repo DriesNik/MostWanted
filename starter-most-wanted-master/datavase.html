@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Name</button>
+</p>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Decendant</button>
+</p>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Next of Kin</button>
+</p>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Family Member</button>
+</p>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Age</button>
+</p>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Occupation</button>
+</p>
+
+<p>
+<button onclick="myFunction2()">Click Here to Search by Name</button>
+</p>
+
+
+
+
+<p id="demo">Click me.</p>
+<script type="text/javascript" src="data.js"></script>
+<script>
+//console.log(data);
+
+var mydata = JSON.parse(data);
+document.getElementById("demo").onclick = function() {myFunction()};
+
+
+function myFunction() {
+    document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
+
+
+
+function myFunction2() {
+    var pete =prompt("Type in Search Terms","Words were here");
+	console.log(pete);
+}
+
+</script>
+
+<script src="data.js"> 
+</script>
+</body>
+
+</html>
