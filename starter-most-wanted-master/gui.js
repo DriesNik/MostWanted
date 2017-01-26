@@ -19,7 +19,7 @@
 
 
 function initSearch(people){
-    var askForName = prompt("Hello do you know the name you are looking for?")
+    var askForName = prompt("name known? yes no")
     switch(askForName.toLowerCase())
         {
         case "yes":
@@ -55,14 +55,14 @@ function initSearchByName(people){
 	
 }
 function getFirstName(people){
-    var enteredFirstName = prompt("Please enter the first name of the person you are looking for.")
-    searchByFirstName(people,enteredFirstName.toLowerCase());
+    var promptFirstName = prompt("enter first name")
+    searchByFirstName(people,promptFirstName.toLowerCase());
 }
-function searchByFirstName(people,enteredFirstName)
+function searchByFirstName(people,promptFirstName)
 {
     for (var i = 0; i <people.length; i++){
     people.filter(function(person){    
-        if(person.firstName.toLowerCase() == enteredFirstName)
+        if(person.firstName.toLowerCase() == promptFirstName)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
@@ -147,17 +147,17 @@ switch(searchOption.toLowerCase())
             eyeColorSearch(people);
             break;
     case "weight":
-            weightSearch(people);
+            getWeight(people);
             break;
     default:
-            alert("I'm sorry that isn't an accepted search term, please enter either age, occupation, height, eye color, or weight.")
+            alert(" age occupation height eye color or weight.")
             initSearchByTraits();
             break;
     }
     ;
 }
 function ageSearch(people){
-    var ageRangeSearch =prompt("Do you know their Exact age, or would you like to search within a Range of five years?")
+    var ageRangeSearch =prompt("exact or range")
     switch(ageRangeSearch.toLowerCase()){
         case "exact":
             askForExactAge(people);
@@ -166,13 +166,13 @@ function ageSearch(people){
             askForAgeRange(people);
             break;
         default:
-            alert("I'm sorry that is not a valid selection. Please choose either exact or range.")
+            alert("exact or range")
             ageRangeSearch(people);       
     }
 }
 function askForExactAge(people)
 {
-    var exactAge = prompt("Please enter in their age.")
+    var exactAge = prompt("enter age")
     searchByExactAge(people, exactAge);
 }
 function searchByExactAge(people, exactAge)
@@ -192,13 +192,13 @@ function searchByExactAge(people, exactAge)
 }
 function askForAgeRange()
 {
-    var ageRange = prompt("Please enter in your best guess at their age, we will return all matches that fall within five years above and below that number.")
+    var ageRange = prompt("enter the age  +- 5")
  searchByAgeRange(people,ageRange);   
 }
 function searchByAgeRange(people, ageRange)
 {}
 function askForOccupation(people){
-    var occupationAnswer = prompt("Please enter in their occupation.")
+    var occupationAnswer = prompt("what is the job")
     searchByOccupation(people,occupationAnswer);
 }
 function searchByOccupation(people,occupationAnswer)
@@ -206,6 +206,7 @@ function searchByOccupation(people,occupationAnswer)
   people.filter(function(person){
         if(person.occupation.toLowerCase() == occupationAnswer)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -215,7 +216,7 @@ function searchByOccupation(people,occupationAnswer)
     });   
 }
 function getHeight(people){
-   var heightPrompt = prompt("Please enter in their height in inches.")
+   var heightPrompt = prompt("what is the height")
    
 searchByHeight(people,heightPrompt);
 }
@@ -234,7 +235,7 @@ function searchByHeight(people,heightPrompt){
     
 }
 function getEyeColor(people){
-    var eyeColorPrompt = prompt("What color are the eyes of the person you are looking for?")
+    var eyeColorPrompt = prompt("enter eye color")
     searchByEyeColor(people, eyeColorPrompt)
 }
 function searchByEyeColor(people, eyeColorPrompt)
@@ -255,13 +256,13 @@ function searchByEyeColor(people, eyeColorPrompt)
 }
 function getWeight(people)
 {
-    var weightAnswer = prompt("Please enter their weight in lbs.")
+    var weightAnswer = prompt("enter weight")
     weightSearch(people,weightAnswer);
 }
 function weightSearch(people,weightSearch){
     {
              people.filter(function(person){
-        if(person.weight() == weightSearch)
+        if(person.weight == weightSearch)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
