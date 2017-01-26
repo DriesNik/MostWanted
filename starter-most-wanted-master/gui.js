@@ -1,86 +1,26 @@
-function initSearch(data){
-	var pete =prompt("What would you like to search for?","Words were here");
-	pete.toUpperCase();
-	switch(pete)
-	{
-		case "name":
-		initSearchByName(data);
+//function initSearch(data){
+	//var pete =prompt("What would you like to search for?","Words were here");
+	//pete.toUpperCase();
+	//switch(pete)
+	//{
+		//case "name":
+		//initSearchByName(data);
 		
-		break;
-		case "traits":
-		initSearchByTraits();
-		default:
-		var y = arraySplit(data[0]);
-		console.log(y);
+		//break;
+		//case "traits":
+		//initSearchByTraits();
+		//default:
+		//var y = arraySplit(data[0]);
+		//console.log(y);
 		
-	}
-	;
-}
-function initSearchByName(data){
-	var fName =prompt("First Name","");
-	var lName =prompt("Last Name","");
-	if (fname == "")
-	{
-		fName= paul;
-	}
-	if (lname == "")
-	{
-		lName= paul;
-	}
-	if((fName+lName == (arraySplit(data,2)+ arraySplit(data,3))))
-	{
-		console.log(yes)
-	}
-	
-}
-function initSearchByTraits(){
-	;
-}
-function displayResults(){
-	;
-}
-function isNumeric() {
-	;
-}
-function getAge(){
-	;
-}
-function getHeight(){
-	;
-}
-function getWeight(){
-	;
-}
-function getEye(){
-	;
-}
-function getOccupation(){
-	;
-}
+	//}
+	//;
 
-function arraySplit(setdata,id)
-{
-	console.log(setdata.length);
-	console.log(setdata);
-	var myArry = [];
-	var myArry2 = [];
-	for (var i in setdata)
-	{
-		myArry.push(i);
-		myArry2.push(setdata[i]);
-		
-		
-	}
-	
-	
-	return myArry2[id];
-	
-}
 
 
 function initSearch(people){
-    var askIfNameKnow = prompt("Hello, do you know the name of the person you are searching for?")
-    switch(askIfNameKnow.toLowerCase())
+    var askForName = prompt("Hello do you know the name you are looking for?")
+    switch(askForName.toLowerCase())
         {
         case "yes":
                 initSearchByName(people);
@@ -95,7 +35,7 @@ function initSearch(people){
         }
 }
 function initSearchByName(people){
-   var nameSelection = prompt("Would you like to search by First, Last, or Full name?")
+   var nameSelection = prompt("will you search by first last or full")
    switch (nameSelection.toLowerCase())
        {
            case "first":
@@ -124,6 +64,7 @@ function searchByFirstName(people,enteredFirstName)
     people.filter(function(person){    
         if(person.firstName.toLowerCase() == enteredFirstName)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -144,6 +85,7 @@ function searchByLastName(people,enteredLastName)
     people.filter(function(person){
         if(person.lastName.toLowerCase() == enteredLastName)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -157,29 +99,43 @@ function searchByLastName(people,enteredLastName)
 function getFullName(people){
     var fullName = prompt("Please enter the full name of the person you are looking for.")
     var searchableFullName = fullName.split(" ")
-    searchForFullName(people,searchableFullName);
+    if(searchForFullName(people,searchableFullName)== true)
+	{
+		console.log("hi");
+		alert("found him");
+	}
+	else
+	{
+		
+	}
+	
 }
 function searchForFullName(people,searchableFullName)
 {
         people.filter(function(person){
         if(person.firstName.toLowerCase() == searchableFullName[0] && person.lastName.toLowerCase() == searchableFullName[1])
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
+				console.log(person);
+				console.log("hi");
                 return true;
             }
         else
         {
+						
            return false;
         }
     });
    
     }
 
+	
 function initSearchByTraits(people){
 var searchOption = prompt("Not knowing their name is not an issue, we have other ways of finding them. Other possible search terms are Age, Occupation, Height, Eye color, or even Weight. How would you like to search? Please enter in one of the follow options, age(can be within 5 years), occupation, height, eye color, weight.")
 switch(searchOption.toLowerCase())
     {
     case "age":
-            ageSearch();
+            ageSearch(people);
             break;
     case "occupation":
             occupationSearch();
@@ -222,12 +178,14 @@ function askForExactAge(people)
 function searchByExactAge(people, exactAge)
 {
        people.filter(function(person){
-        if(person.dob.toLowerCase() == enteredLastName)
+        if(person.dob == exactAge)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
         {
+			
            return false;
         }
     });
@@ -265,6 +223,7 @@ function searchByHeight(people,heightAnswer){
      people.filter(function(person){
         if(person.height() == heightAnswer)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -284,6 +243,7 @@ function searchByEyeColor(people, eyeColorAnswer)
              people.filter(function(person){
         if(person.eyeColor() == eyeColorAnswer)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -303,6 +263,7 @@ function weightSearch(people,weightSearch){
              people.filter(function(person){
         if(person.weight() == weightSearch)
             {
+				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -312,25 +273,17 @@ function weightSearch(people,weightSearch){
     });
     }
 }   
-function displayResults(){
-	;
-}
-function isNumeric() {
-	;
-}
-function getAge(){
-	;
-}
-function getHeight(){
-	;
-}
-function getWeight(){
-	;
-}
-function getEye(){
-	;
-}
-function getOccupation(){
-	;
-}
 
+
+function grabInfo(person)
+{
+	
+	person.firstName;
+	person.lastName;
+	person.ids;
+	person.dob;
+	person.weight;
+	person.height;
+	person.eyeColor;
+	person.occupation;
+}
