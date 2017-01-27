@@ -65,10 +65,20 @@ function searchByFirstName(people,promptFirstName)
         if(person.firstName.toLowerCase() == promptFirstName)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-                return true;
+                var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				
+				return true;
             }
         else
         {
+			
             return false;
  
         }
@@ -76,7 +86,7 @@ function searchByFirstName(people,promptFirstName)
     }
 }
 function getLastName(people){
-   var enteredLastName =prompt("Please enter the last name of the person you are looking for.")
+   var enteredLastName =prompt("enter last name")
    searchByLastName(people,enteredLastName.toLowerCase());
 }
 function searchByLastName(people,enteredLastName)
@@ -86,7 +96,15 @@ function searchByLastName(people,enteredLastName)
         if(person.lastName.toLowerCase() == enteredLastName)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-                return true;
+                var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				return true;
             }
         else
         {
@@ -101,8 +119,9 @@ function getFullName(people){
     var searchableFullName = fullName.split(" ")
     if(searchForFullName(people,searchableFullName)== true)
 	{
+		
 		console.log("hi");
-		alert("found him");
+		
 	}
 	else
 	{
@@ -115,8 +134,17 @@ function searchForFullName(people,searchableFullName)
         people.filter(function(person){
         if(person.firstName.toLowerCase() == searchableFullName[0] && person.lastName.toLowerCase() == searchableFullName[1])
             {
-				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-				console.log(person);
+				document.write( person.firstName + "\n" + person.lastName+ "\n" + person.id  +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
+				var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				
+				console.log(person.id);
 				console.log("hi");
                 return true;
             }
@@ -129,9 +157,27 @@ function searchForFullName(people,searchableFullName)
    
     }
 
+	function getFamily(people,idd){
+		
+    people.filter(function(person){    
+	if (idd == (person.currentSpouse|| person.parent[0]||person.parent[1])){
+		alert(person.firstName+" " + person.lastName);
+		
+		return true;
+	  
+	}
+	else{
+		
+	}
+	}
+		
+	)	
+	
+	}
+	
 	
 function initSearchByTraits(people){
-var searchOption = prompt("Not knowing their name is not an issue, we have other ways of finding them. Other possible search terms are Age, Occupation, Height, Eye color, or even Weight. How would you like to search? Please enter in one of the follow options, age(can be within 5 years), occupation, height, eye color, weight.")
+var searchOption = prompt(" search age occupation height  eye color or weight")
 switch(searchOption.toLowerCase())
     {
     case "age":
@@ -167,7 +213,7 @@ function ageSearch(people){
             break;
         default:
             alert("exact or range")
-            ageRangeSearch(people);       
+            ageSearch(people);       
     }
 }
 function askForExactAge(people)
@@ -178,25 +224,61 @@ function askForExactAge(people)
 function searchByExactAge(people, exactAge)
 {
        people.filter(function(person){
-        if(person.dob == exactAge)
+        if(getAge(person.dob) == exactAge)
             {
+				
+				
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-                return true;
+                var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				return true;
             }
         else
         {
-			
+			console.log(exactAge);
+			console.log(getAge(person.dob));
+			console.log("failed");
            return false;
         }
     });
 }
-function askForAgeRange()
+
+function getAge(dateString) 
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
+function askForAgeRange(people)
 {
     var ageRange = prompt("enter the age  +- 5")
  searchByAgeRange(people,ageRange);   
 }
 function searchByAgeRange(people, ageRange)
-{}
+{
+	var captop = (ageRange + 5);
+	var capbot = (ageRange - 5);
+	for( var i = 0; i< 10;i++)
+	{
+		
+		searchByExactAge(people, (ageRange -5 +i));
+		console.log(i);
+	}
+	
+	
+}
 function askForOccupation(people){
     var occupationAnswer = prompt("what is the job")
     searchByOccupation(people,occupationAnswer);
@@ -207,7 +289,16 @@ function searchByOccupation(people,occupationAnswer)
         if(person.occupation.toLowerCase() == occupationAnswer)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-                return true;
+                
+				var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				return true;
             }
         else
         {
@@ -225,7 +316,15 @@ function searchByHeight(people,heightPrompt){
         if(person.height() == heightPrompt)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-                return true;
+                var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				return true;
             }
         else
         {
@@ -244,7 +343,15 @@ function searchByEyeColor(people, eyeColorPrompt)
              people.filter(function(person){
         if(person.eyeColor() == eyeColorPrompt)
             {
-				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
+				
+				var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 return true;
             }
         else
@@ -265,7 +372,15 @@ function weightSearch(people,weightSearch){
         if(person.weight == weightSearch)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
-                return true;
+                var famPrompt = prompt( "would you like thier imediate family?");
+				if (famPrompt== "yes")
+				{
+					getFamily(people, person.id);
+					
+					
+					
+				}
+				return true;
             }
         else
         {
