@@ -1,0 +1,21 @@
+{
+  "name": "npm_install_karma_karma-jasmine_jasmine-core_karma-chrome-launcher_--save-dev",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "script-spec.js",
+  "dependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "nik",
+  "license": "ISC"
+}

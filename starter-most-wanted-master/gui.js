@@ -1,20 +1,3 @@
-//function initSearch(data){
-	//var pete =prompt("What would you like to search for?","Words were here");
-	//pete.toUpperCase();
-	//switch(pete)
-	//{
-		//case "name":
-		//initSearchByName(data);
-		
-		//break;
-		//case "traits":
-		//initSearchByTraits();
-		//default:
-		//var y = arraySplit(data[0]);
-		//console.log(y);
-		
-	//}
-	//;
 
 
 
@@ -91,25 +74,26 @@ function getLastName(people){
 }
 function searchByLastName(people,enteredLastName)
 {
-    //for (let i in people){
     people.filter(function(person){
         if(person.lastName.toLowerCase() == enteredLastName)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 var famPrompt = prompt( "would you like thier imediate family?");
+				
 				if (famPrompt== "yes")
 				{
 					getFamily(people, person.id);
 					
 					
-					
+					return true;
 				}
-				return true;
+				
             }
         else
         {
            return false;
         }
+		
     });
     
     }
@@ -160,14 +144,14 @@ function searchForFullName(people,searchableFullName)
 	function getFamily(people,idd){
 		
     people.filter(function(person){    
-	if (idd == (person.currentSpouse|| person.parent[0]||person.parent[1])){
+	if (idd == (person.currentSpouse|| person.parent)){
 		alert(person.firstName+" " + person.lastName);
 		
 		return true;
 	  
 	}
 	else{
-		
+		return false;
 	}
 	}
 		
