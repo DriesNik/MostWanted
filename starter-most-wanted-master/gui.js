@@ -13,7 +13,7 @@ function initSearch(people){
                 break;
         default:
                 alert("yes or no")
-                initSearch();
+                initSearch(people);
                 break;
         }
 }
@@ -32,7 +32,7 @@ function initSearchByName(people){
                break;
            default:
                alert("last firts full")
-               initSearchByName();
+               initSearchByName(people);
                break;
        }
 	
@@ -122,13 +122,15 @@ function searchForFullName(people,searchableFullName)
 				var famPrompt = prompt( "would you like thier imediate family?");
 				if (famPrompt== "yes")
 				{
-					getFamily(people, person.id);
+					var pie = getFamily(people, person);
+					
+					displayResults(pie);
 					
 					
 					
 				}
 				
-				console.log(person.id);
+				console.log(person);
 				console.log("hi");
                 return true;
             }
@@ -142,23 +144,67 @@ function searchForFullName(people,searchableFullName)
     }
 
 	function getFamily(people,idd){
+		document.write(idd);
 		
-    people.filter(function(person){    
-	if (idd == (person.currentSpouse|| person.parent)){
-		alert(person.firstName+" " + person.lastName);
+		console.log(idd);
+    
 		
-		return true;
+		
+		var spouse = getSpouse(people,idd);
+		var child = getChildren(people,idd);
+		var parents = getParents(people,idd);
+		var sibling = getSiblings(people, idd);
+		var family= [];
+		
+		
+		family.push(...spouse);
+		
+		family.push(...child);
+		family.push(...parents);
+		console.log (parents);
+		family.push(...sibling);
+		
+		return family;
 	  
-	}
-	else{
-		return false;
-	}
-	}
 		
-	)	
 	
 	}
 	
+	function getParents(people, person){
+    var parentList = people.filter(function (el) {
+        return person.parents.includes(el.id);
+    });
+   
+	console.log(parentList);
+	console.log(parentList.firstName + " " + parentList.lastName);
+    return (parentList.firstName + " " + parentList.lastName);
+}
+function getSiblings(people, person){
+    var siblingList = people.filter(function (el) {
+        return el.parents.includes(person.parents);
+    });
+    siblingList.sort(function (a, b){
+        return getAge(b.dob) - getAge(a.dob);
+    });
+    return siblingList;
+}
+function getSpouse( people, person){
+    var spouse = people.filter(function (el) {
+        return el.currentSpouse == person.id;
+    });
+    return spouse;
+}
+function getChildren(people, person){
+    var childrenList = people.filter(function (el) {
+        return el.parents.includes(person.id);
+    });
+    childrenList.sort(function (a, b){
+        return getAge(b.dob) - getAge(a.dob);
+    });
+    return childrenList;
+}
+	
+
 	
 function initSearchByTraits(people){
 var searchOption = prompt(" search age occupation height  eye color or weight")
@@ -377,7 +423,6 @@ function weightSearch(people,weightSearch){
 
 function grabInfo(person)
 {
-	
 	person.firstName;
 	person.lastName;
 	person.ids;
@@ -387,3 +432,13 @@ function grabInfo(person)
 	person.eyeColor;
 	person.occupation;
 }
+function displayResults(people){
+	var nameOnly = [];
+	for(var i = 0; i < people.length; i++){
+		var fullName = people.firstName + " " + people.lastName;
+		nameOnly.push(fullName);
+	}
+	var joinedNames = nameOnly.join("\n");
+    alert(joinedNames);
+}
+
