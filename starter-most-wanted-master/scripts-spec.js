@@ -12,7 +12,7 @@ describe('function lastname check', function(){
 });
 describe('function lastname check', function(){
 	it('add 6 to 2', function(){
-		expect(searchForFullName(data,"pafoy")).toEqual(undefined);
+		expect(searchForFullName(data,"jen pafoy")).toEqual(undefined);
 	});
 });
 describe('function lastname check', function(){
