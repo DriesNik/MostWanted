@@ -15,11 +15,43 @@ describe('function lastname check', function(){
 		expect(searchForFullName(data,"jen pafoy")).toEqual(undefined);
 	});
 });
-describe('function lastname check', function(){
+describe('function getting age', function(){
+	it('add 6 to 2', function(){
+		expect(getAge("08/22/1992")).toEqual(24);
+	});
+});
+describe('function exact age check', function(){
 	it('add 6 to 2', function(){
 		expect(searchByExactAge(data,"24")).toEqual(undefined);
 	});
 });
+//
+describe('function occupation checking', function(){
+	it('add 6 to 2', function(){
+		expect(searchByOccupation(data,"24")).toEqual(undefined);
+	});
+});
+describe('function height check', function(){
+	it('add 6 to 2', function(){
+		expect(searchByHeight(data,"24")).toEqual(undefined);
+	});
+});
+
+describe('function weight check', function(){
+	it('add 6 to 2', function(){
+		expect(weightSearch(data,"24")).toEqual(undefined);
+	});
+});
+
+describe('function eyecolor check', function(){
+	it('add 6 to 2', function(){
+		expect(searchByEyeColor(data,"24")).toEqual(undefined);
+	});
+});
+
+
+
+
 var data =
 [{
 	

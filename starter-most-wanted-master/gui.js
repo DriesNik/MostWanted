@@ -267,13 +267,11 @@ function searchByExactAge(people, exactAge)
 					
 					
 				}
-				return true;
+				return person.id;
             }
         else
         {
-			console.log(exactAge);
-			console.log(getAge(person.dob));
-			console.log("failed");
+			
            return false;
         }
     });
@@ -343,7 +341,7 @@ searchByHeight(people,heightPrompt);
 }
 function searchByHeight(people,heightPrompt){
      people.filter(function(person){
-        if(person.height() == heightPrompt)
+        if(person.height == heightPrompt)
             {
 				alert(person.firstName + "\n" + person.lastName +"\n" +person.dob+"\n" +person.weight+"\n" +person.height+"\n" +person.eyeColor+"\n" +person.occupation);
                 var famPrompt = prompt( "would you like thier imediate family?");
@@ -371,7 +369,7 @@ function searchByEyeColor(people, eyeColorPrompt)
 {
         {
              people.filter(function(person){
-        if(person.eyeColor() == eyeColorPrompt)
+        if(person.eyeColor == eyeColorPrompt)
             {
 				
 				var famPrompt = prompt( "would you like thier imediate family?");
